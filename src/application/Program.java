@@ -1,7 +1,10 @@
 package application;
 
+import java.util.List;
+
 import model.dao.DaoFactory;
 import model.dao.SellerDao;
+import model.entities.Department;
 import model.entities.Seller;
 
 public class Program {
@@ -12,12 +15,19 @@ public class Program {
 		Seller seller = new Seller(21, "Bob", "bob@gmail.com", new Date(), 3000.0, obj);
 		System.out.println(seller);
 		*/
-		
-		System.out.println("=== Teste 1: findById ===");
 		SellerDao sellerDao = DaoFactory.createSellerDao();
-		
+		System.out.println("=== Teste 1: findById ===");
+				
 		Seller seller = sellerDao.findById(3);
 		System.out.println(seller);
+		
+		System.out.println("=== Teste 2: findById ===");
+		Department department = new Department(2,null);
+		List<Seller> list = sellerDao.findByDepartment(department);
+		
+		for (Seller obj : list) {
+			System.out.println(obj);
+		}
 
 	}
 
